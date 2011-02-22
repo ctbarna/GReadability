@@ -19,7 +19,7 @@ function addJQuery(callback) {
 function main() {
   var API_URL = "http://plateboiler.lazyreadr.com/";
   alert("Works");
-  $.keydown(function (event) {
+  $(document).keydown(function (event) {
     if (event.keyCode == '48') {
       var link = $(".entry-container .entry-title-link").attr("href");
       alert(link);
