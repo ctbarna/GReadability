@@ -18,11 +18,20 @@ function addJQuery(callback) {
 // The guts of this userscript
 function main() {
   var API_URL = "http://plateboiler.lazyreadr.com/";
-  alert("Works");
+  
   $(document).keydown(function (event) {
     if (event.keyCode == '48') {
       var link = $(".entry-container .entry-title-link").attr("href");
-      alert(link);
+      var jsonObject = {'callback': 'http://www.github.com/ctbarna',
+                        'queue': 'scraping',
+                        'parameters' : {'url' : link }};
+      
+      // Make the AJAX POST.
+      $.post(API_URL, jsonObject, function(data) {
+        // Modify the body.
+        $('.entry-container .item-body div').html(data.result);
+      });
+
     }
   });
 }
